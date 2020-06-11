@@ -35,3 +35,6 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+/ML.NET/Experiment2/train-balanced-sarc.csv
+/ML.NET/Experiment3/tweets.csv
+/ML.NET/Experiment4/tweets.csv

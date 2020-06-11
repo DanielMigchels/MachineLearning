@@ -12,8 +12,8 @@ namespace MachineLearningML.ConsoleApp
 {
     public static class ModelBuilder
     {
-        private static string TRAIN_DATA_FILEPATH = @"C:\Users\Daniël\source\repos\MachineLearning\MachineLearning\wikipedia-detox-250-line-data.tsv";
-        private static string MODEL_FILEPATH = @"C:\Users\Daniël\AppData\Local\Temp\MLVSTools\MachineLearningML\MachineLearningML.Model\MLModel.zip";
+        private static string TRAIN_DATA_FILEPATH = @"C:\repos\MachineLearning\ML.NET\Experiment1\MachineLearning\wikipedia-detox-250-line-data.tsv";
+        private static string MODEL_FILEPATH = @"C:\Users\Daniel\AppData\Local\Temp\MLVSTools\MachineLearningML\MachineLearningML.Model\MLModel.zip";
         // Create MLContext to be shared across the model creation workflow objects 
         // Set a random seed for repeatable/deterministic results across multiple trainings.
         private static MLContext mlContext = new MLContext(seed: 1);
@@ -50,7 +50,7 @@ namespace MachineLearningML.ConsoleApp
                                       .Append(mlContext.Transforms.NormalizeMinMax("Features", "Features"))
                                       .AppendCacheCheckpoint(mlContext);
             // Set the training algorithm 
-            var trainer = mlContext.MulticlassClassification.Trainers.OneVersusAll(mlContext.BinaryClassification.Trainers.SgdCalibrated(labelColumnName: "Sentiment", featureColumnName: "Features"), labelColumnName: "Sentiment")
+            var trainer = mlContext.MulticlassClassification.Trainers.OneVersusAll(mlContext.BinaryClassification.Trainers.AveragedPerceptron(labelColumnName: "Sentiment", numberOfIterations: 10, featureColumnName: "Features"), labelColumnName: "Sentiment")
                                       .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);

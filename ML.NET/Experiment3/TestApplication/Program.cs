@@ -1,21 +1,21 @@
 ﻿using SampleClassification.Model;
 using System;
 
-namespace SarcasmDetector
+namespace TestApplication
 {
     class Program
     {
         static void Main(string[] args)
         {
-            while (true)
+            while(true)
             {
                 var input = new ModelInput();
-                input.ContextText = Console.ReadLine();
-                input.SarcasmText = Console.ReadLine();
+                input.Tweet = Console.ReadLine();
                 ModelOutput result = ConsumeModel.Predict(input);
-                Console.WriteLine("Sarcasm: " + result.Prediction + " - " + result.Score[1]);
+                Console.WriteLine("Donald Tweet: " + result.Prediction + " - " + result.Score[1]);
                 Console.WriteLine();
             }
+            
         }
     }
 }
