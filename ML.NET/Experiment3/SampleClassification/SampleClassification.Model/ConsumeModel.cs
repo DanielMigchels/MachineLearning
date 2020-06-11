@@ -31,7 +31,11 @@ namespace SampleClassification.Model
             MLContext mlContext = new MLContext();
 
             // Load model & create prediction engine
+#if DEBUG
             string modelPath = @"C:\repos\MachineLearning\ML.NET\Experiment3\SampleClassification\SampleClassification.Model\MLModel.zip";
+#else
+            string modelPath = @"MLModel.zip";
+#endif
             ITransformer mlModel = mlContext.Model.Load(modelPath, out var modelInputSchema);
             var predEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
 

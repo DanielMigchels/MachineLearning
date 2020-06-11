@@ -39,6 +39,8 @@
 
     function Post() {
 
+        document.getElementById("result").style.display = "hidden";
+
         clearTimeout(timer)
 
         fetch(window.location.href + "ml", {
