@@ -22,24 +22,30 @@
     </div>
 </div>
 
-<div class="row mt-5" id="result">
-    <h4 class="mx-auto" id="resulttext">Trump would probably tweet this!</h4>
-    <div class="bar" id="resultbar">
+<div class="row mt-5" >
+    <div style="display: none" class="loader mx-auto" id="loader"></div>
+    <div id="result" class="mx-auto">
+        <h4 class="mx-auto" id="resulttext"></h4>
+        <div class="bar" id="resultbar"></div>
     </div>
 </div>
+
 
 <script>
 
     var timer = 0;
 
     function ML() {
+        document.getElementById("resulttext").innerText = ""
+        document.getElementById("resultbar").innerText = "";
+        document.getElementById("loader").style.display = "block";
+        document.getElementById("result").style.display = "none";
+        
         clearTimeout(timer);
         timer = setTimeout(Post, 350);
     };
 
     function Post() {
-
-        document.getElementById("result").style.display = "hidden";
 
         clearTimeout(timer)
 
@@ -61,6 +67,7 @@
                     document.getElementById("resulttext").innerText = "Trump would not tweet this.";
                 }
                 document.getElementById("resultbar").innerText = percentage + "%";
+                document.getElementById("loader").style.display = "none";
                 document.getElementById("result").style.display = "block";
             });
 
