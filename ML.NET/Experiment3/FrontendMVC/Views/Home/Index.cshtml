@@ -41,7 +41,7 @@
 
         clearTimeout(timer)
 
-        fetch("http://localhost:5000/ml", {
+        fetch(window.location.href + "ml", {
             method: "post",
             headers: new Headers({ 'content-type': 'application/json' }),
             body: "{ \"TweetContent\": \"" + document.getElementById("tweet").value + "\" }"
